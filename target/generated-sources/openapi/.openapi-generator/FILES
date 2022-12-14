@@ -1,0 +1,8 @@
+src/main/java/srl/anagrafica/demo/openapi/api/ApiUtil.java
+src/main/java/srl/anagrafica/demo/openapi/api/AssociaApi.java
+src/main/java/srl/anagrafica/demo/openapi/api/AssociaApiController.java
+src/main/java/srl/anagrafica/demo/openapi/api/AssociaApiDelegate.java
+src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApi.java
+src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApiController.java
+src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApiDelegate.java
+src/main/java/srl/anagrafica/demo/openapi/model/ProgettoDTO.java

@@ -1,0 +1,20 @@
+spring:    
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate.ddl-auto: create
+      
+  sql:
+    init:
+      platform: postgresql
+ 
+  datasource:    
+    url: jdbc:postgresql://localhost:5432/treProgetti
+    username: postgres
+    password: 5585
+    driverClassName: org.postgresql.Driver
+server:
+  address: 0.0.0.0
+    
+ 

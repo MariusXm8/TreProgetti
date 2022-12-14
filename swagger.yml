@@ -1,0 +1,187 @@
+openapi: 3.0.0
+info:
+  title: Gestione Progetto
+  description: Servizi per la gestione di progetti
+  version: 1.0.0
+  
+paths:
+  /progetto:
+    get:
+      operationId: CercaTutti
+      description: Ritorna tutti i progetti
+      responses:
+        '200':
+          description: operazione riuscita
+          content:
+            applicazion/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/progettoDTO'
+                  
+        '401':
+          description: errore
+          
+    post:
+      operationId: AggiungiProgetto
+      description: Aggiunge progetto nel db
+      requestBody:
+        description: crea prima il body per inserire nel db
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/progettoDTO'
+        required: true
+      responses:
+        '200':
+          description: Progetto aggiunto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/progettoDTO'
+        '401':
+          description: Input non valido
+          
+  /progetto/{id}:
+    put:
+      summary: Modifica un progetto
+      description: Modifica un progetto ricevendo un id
+      operationId: ModificaProgettoId
+      parameters:
+        - name: id
+          in: path
+          description: ID del progetto
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Aggiorna il progetto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/progettoDTO'
+        required: true
+      responses:
+        '200':
+          description: Modifica riuscita
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/progettoDTO'
+        '401':
+          description: Persona not found
+          
+          
+    delete:
+      summary: Cancella una persona
+      operationId: CancellaProgettoId
+      description: Cancella una persona ricevando l'id
+      parameters:
+      - name: id
+        in: path
+        description: ID del progetto da cancellare
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Progetto Cancellato
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Progetto non trovato
+  /associa/{id}{id2}:
+    put:
+      summary: Modifica un progetto
+      description: Modifica un progetto ricevendo un id
+      operationId: AssociaProgettoLavoratore
+      parameters:
+        - name: id
+          in: path
+          description: ID del progetto
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: id2
+          in: path
+          description: ID del Lavoratore
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Aggiorna il progetto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/progettoDTO'
+        required: true
+      responses:
+        '200':
+          description: Modifica riuscita
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/progettoDTO'
+        '401':
+          description: Progetto not found
+    delete:
+      summary: Modifica un progetto
+      description: Modifica un progetto ricevendo un id
+      operationId: RimoviProgettoLavoratore
+      parameters:
+        - name: id
+          in: path
+          description: ID del progetto
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: id2
+          in: path
+          description: ID del Lavoratore
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Rimozione riuscita
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/progettoDTO'
+        '401':
+          description: Progetto not found
+        
+components:
+  schemas:
+    progettoDTO:
+      type: object
+      properties:
+        listaLavoratori:
+          type: array
+          items:
+            type: integer
+          example: [1,2,3]
+        dataInizio:
+          type: string
+          example: 2011-12-03
+        dataFine:
+          type: string
+          example: 2011-12-03
+        budget:
+          type: number
+          format: float
+          example: 500.00
+        
+            
+      
+      
+      
+      
