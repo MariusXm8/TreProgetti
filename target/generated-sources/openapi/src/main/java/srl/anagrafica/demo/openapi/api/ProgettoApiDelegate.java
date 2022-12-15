@@ -16,7 +16,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link ProgettoApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-14T17:27:51.223137400+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-15T15:09:32.274434100+01:00[Europe/Paris]")
 public interface ProgettoApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -33,6 +33,33 @@ public interface ProgettoApiDelegate {
      * @see ProgettoApi#aggiungiProgetto
      */
     default ResponseEntity<ProgettoDTO> aggiungiProgetto(ProgettoDTO progettoDTO) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"dataInizio\" : \"2011-12-03\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03\", \"budget\" : 500.0 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * PUT /progetto/associa/{id}/{id2} : Modifica un progetto
+     * Modifica un progetto ricevendo un id
+     *
+     * @param id ID del progetto (required)
+     * @param id2 ID del Lavoratore (required)
+     * @param progettoDTO Aggiorna il progetto (required)
+     * @return Modifica riuscita (status code 200)
+     *         or Progetto not found (status code 401)
+     * @see ProgettoApi#associaProgettoLavoratore
+     */
+    default ResponseEntity<ProgettoDTO> associaProgettoLavoratore(Long id,
+        Long id2,
+        ProgettoDTO progettoDTO) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -94,6 +121,31 @@ public interface ProgettoApiDelegate {
      */
     default ResponseEntity<ProgettoDTO> modificaProgettoId(Long id,
         ProgettoDTO progettoDTO) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"dataInizio\" : \"2011-12-03\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03\", \"budget\" : 500.0 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+    /**
+     * DELETE /progetto/associa/{id}/{id2} : Modifica un progetto
+     * Modifica un progetto ricevendo un id
+     *
+     * @param id ID del progetto (required)
+     * @param id2 ID del Lavoratore (required)
+     * @return Rimozione riuscita (status code 200)
+     *         or Progetto not found (status code 401)
+     * @see ProgettoApi#rimoviProgettoLavoratore
+     */
+    default ResponseEntity<ProgettoDTO> rimoviProgettoLavoratore(Long id,
+        Long id2) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

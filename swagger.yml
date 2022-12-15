@@ -94,7 +94,7 @@ paths:
                 type: string
         '401':
           description: Progetto non trovato
-  /associa/{id}{id2}:
+  /progetto/associa/{idProgetto}/{idLavoratore}:
     put:
       summary: Modifica un progetto
       description: Modifica un progetto ricevendo un id
