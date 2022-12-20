@@ -31,4 +31,6 @@ public class Progetto {
 	@Column(name="budget")
 	private double budget;
 
+	
+
 }

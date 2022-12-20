@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-15T15:09:32.274434100+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-20T17:37:40.904146300+01:00[Europe/Paris]")
 @Validated
 @Api(value = "progetto", description = "the progetto API")
 public interface ProgettoApi {
@@ -49,26 +49,26 @@ public interface ProgettoApi {
 
 
     /**
-     * PUT /progetto/associa/{id}/{id2} : Modifica un progetto
+     * PUT /progetto/associa/{idProgetto}/{idLavoratore} : Modifica un progetto
      * Modifica un progetto ricevendo un id
      *
-     * @param id ID del progetto (required)
-     * @param id2 ID del Lavoratore (required)
+     * @param idProgetto ID del progetto (required)
+     * @param idLavoratore ID del Lavoratore (required)
      * @param progettoDTO Aggiorna il progetto (required)
-     * @return Modifica riuscita (status code 200)
+     * @return Modifica riuscita (status code 201)
      *         or Progetto not found (status code 401)
      */
     @ApiOperation(value = "Modifica un progetto", nickname = "associaProgettoLavoratore", notes = "Modifica un progetto ricevendo un id", response = ProgettoDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Modifica riuscita", response = ProgettoDTO.class),
+        @ApiResponse(code = 201, message = "Modifica riuscita", response = ProgettoDTO.class),
         @ApiResponse(code = 401, message = "Progetto not found") })
     @PutMapping(
-        value = "/progetto/associa/{id}/{id2}",
+        value = "/progetto/associa/{idProgetto}/{idLavoratore}",
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<ProgettoDTO> associaProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("id") Long id,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("id2") Long id2,@ApiParam(value = "Aggiorna il progetto" ,required=true )  @Valid @RequestBody ProgettoDTO progettoDTO) {
-        return getDelegate().associaProgettoLavoratore(id, id2, progettoDTO);
+    default ResponseEntity<ProgettoDTO> associaProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("idProgetto") Long idProgetto,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("idLavoratore") Long idLavoratore,@ApiParam(value = "Aggiorna il progetto" ,required=true )  @Valid @RequestBody ProgettoDTO progettoDTO) {
+        return getDelegate().associaProgettoLavoratore(idProgetto, idLavoratore, progettoDTO);
     }
 
 
@@ -77,12 +77,12 @@ public interface ProgettoApi {
      * Cancella una persona ricevando l&#39;id
      *
      * @param id ID del progetto da cancellare (required)
-     * @return Progetto Cancellato (status code 200)
+     * @return Progetto Cancellato (status code 201)
      *         or Progetto non trovato (status code 401)
      */
     @ApiOperation(value = "Cancella una persona", nickname = "cancellaProgettoId", notes = "Cancella una persona ricevando l'id", response = String.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Progetto Cancellato", response = String.class),
+        @ApiResponse(code = 201, message = "Progetto Cancellato", response = String.class),
         @ApiResponse(code = 401, message = "Progetto non trovato") })
     @DeleteMapping(
         value = "/progetto/{id}",
@@ -137,24 +137,24 @@ public interface ProgettoApi {
 
 
     /**
-     * DELETE /progetto/associa/{id}/{id2} : Modifica un progetto
-     * Modifica un progetto ricevendo un id
+     * DELETE /progetto/associa/{idProgetto}/{idLavoratore} : Rimovi un lavoratore associato
+     * Rimuove il lavoratore associato
      *
-     * @param id ID del progetto (required)
-     * @param id2 ID del Lavoratore (required)
-     * @return Rimozione riuscita (status code 200)
+     * @param idProgetto ID del progetto (required)
+     * @param idLavoratore ID del Lavoratore (required)
+     * @return Rimozione riuscita (status code 201)
      *         or Progetto not found (status code 401)
      */
-    @ApiOperation(value = "Modifica un progetto", nickname = "rimoviProgettoLavoratore", notes = "Modifica un progetto ricevendo un id", response = ProgettoDTO.class, tags={  })
+    @ApiOperation(value = "Rimovi un lavoratore associato", nickname = "rimoviProgettoLavoratore", notes = "Rimuove il lavoratore associato", response = String.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Rimozione riuscita", response = ProgettoDTO.class),
+        @ApiResponse(code = 201, message = "Rimozione riuscita", response = String.class),
         @ApiResponse(code = 401, message = "Progetto not found") })
     @DeleteMapping(
-        value = "/progetto/associa/{id}/{id2}",
+        value = "/progetto/associa/{idProgetto}/{idLavoratore}",
         produces = { "application/json" }
     )
-    default ResponseEntity<ProgettoDTO> rimoviProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("id") Long id,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("id2") Long id2) {
-        return getDelegate().rimoviProgettoLavoratore(id, id2);
+    default ResponseEntity<String> rimoviProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("idProgetto") Long idProgetto,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("idLavoratore") Long idLavoratore) {
+        return getDelegate().rimoviProgettoLavoratore(idProgetto, idLavoratore);
     }
 
 }

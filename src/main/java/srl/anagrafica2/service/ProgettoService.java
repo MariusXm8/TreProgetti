@@ -9,10 +9,10 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 import srl.anagrafica.demo.openapi.api.ProgettoApiDelegate;
 import srl.anagrafica.demo.openapi.model.ProgettoDTO;
-import srl.anagrafica2.additional.Lavoratore;
+
 import srl.anagrafica2.mapper.ProgettoMapper;
 import srl.anagrafica2.model.Progetto;
-import srl.anagrafica2.repository.LavoratoreRepository;
+
 import srl.anagrafica2.repository.ProgettoRepository;
 import srl.anagrafica2.validation.ValidationService;
 
@@ -20,7 +20,6 @@ import srl.anagrafica2.validation.ValidationService;
 public class ProgettoService implements ProgettoApiDelegate {
 
 	private ProgettoRepository repo;
-	private LavoratoreRepository repoL;
 	private ProgettoMapper pm;
 	private ValidationService vs;
 
@@ -74,26 +73,46 @@ public class ProgettoService implements ProgettoApiDelegate {
 		return ResponseEntity.notFound().build();// In teoria devo ritornare gli errori
 
 	}
-
+	// ------------------------------------------PUT ASOCCIA
 	@Override
 	public ResponseEntity<ProgettoDTO> associaProgettoLavoratore(Long idProgetto, Long idLavoratore, ProgettoDTO progettoDTO) {
 		Optional<Progetto> op = repo.findById(idProgetto);
-		Optional<Lavoratore> ol=repoL.findById(idLavoratore);
-		if (op.isPresent()&& ol.isPresent()) {
-			//Verifico se il lavoratore è presente in qualche progetto
-			if (ol.isPresent()) {
-				
+		if (!op.isPresent()&& vs.associato(idLavoratore)) {
+			return ResponseEntity.notFound().build();
+		}
+		else {
+			//se Il progetto è presente
+			Progetto p=pm.progettoDTOToProgetto(progettoDTO);						
+			p.getListaLavoratori().add(idLavoratore);	
+			return ResponseEntity.ok(pm.progettoToProgettoDTO(p));
 			}
+		
+	}
+	// ------------------------------------------DELETE ASOCCIA
+	@Override
+	public ResponseEntity<String> rimoviProgettoLavoratore(Long idProgetto, Long idLavoratore) {
+		Optional<Progetto> op = repo.findById(idProgetto);
+		if (!op.isPresent()&& !vs.associato(idLavoratore)) {
+			return ResponseEntity.notFound().build();
+		}
+		else {
+			Progetto p= op.get();
+			List aiuto=p.getListaLavoratori();
+			aiuto.remove(idLavoratore);
+			p.setListaLavoratori(aiuto);
+			return ResponseEntity.ok("Rimozione del Lavoratore Completata!");
 		}
 		
-		return ProgettoApiDelegate.super.associaProgettoLavoratore(idProgetto, idLavoratore, progettoDTO);
 	}
-
-	@Override
-	public ResponseEntity<ProgettoDTO> rimoviProgettoLavoratore(Long idProgetto, Long idLavoratore) {
-		// TODO Auto-generated method stub
-		return ProgettoApiDelegate.super.rimoviProgettoLavoratore(idProgetto, idLavoratore);
-	}
-	// da errore se viene cancellato
-
+	
+	
 }
+
+
+
+
+
+
+
+
+
