@@ -3,9 +3,9 @@ package srl.anagrafica2.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import srl.anagrafica.demo.openapi.api.ProgettoApiDelegate;
 import srl.anagrafica.demo.openapi.model.ProgettoDTO;
@@ -18,16 +18,20 @@ import srl.anagrafica2.validation.ValidationService;
 
 @Service
 public class ProgettoService implements ProgettoApiDelegate {
-
-	private ProgettoRepository repo;
-	private ProgettoMapper pm;
-	private ValidationService vs;
+	
+	
+	@Autowired
+	private  ProgettoRepository repo;
+	@Autowired
+	private  ProgettoMapper pm ;
+	@Autowired
+	private  ValidationService vs;
 
 	// ------------------------------------------GET
 	@Override
 	public ResponseEntity<List<ProgettoDTO>> cercaTutti() {
 
-		return ResponseEntity.ok(pm.INSTANCE.personaToPersonaDTO(repo.findAll()));
+		return ResponseEntity.ok(ProgettoMapper.INSTANCE.personaToPersonaDTO(repo.findAll()));
 	}
 
 	// ------------------------------------------POST
@@ -84,6 +88,7 @@ public class ProgettoService implements ProgettoApiDelegate {
 			//se Il progetto è presente
 			Progetto p=pm.progettoDTOToProgetto(progettoDTO);						
 			p.getListaLavoratori().add(idLavoratore);	
+			repo.save(p);
 			return ResponseEntity.ok(pm.progettoToProgettoDTO(p));
 			}
 		
@@ -97,9 +102,10 @@ public class ProgettoService implements ProgettoApiDelegate {
 		}
 		else {
 			Progetto p= op.get();
-			List aiuto=p.getListaLavoratori();
+			List<Long> aiuto=p.getListaLavoratori();
 			aiuto.remove(idLavoratore);
 			p.setListaLavoratori(aiuto);
+			repo.save(p);
 			return ResponseEntity.ok("Rimozione del Lavoratore Completata!");
 		}
 		

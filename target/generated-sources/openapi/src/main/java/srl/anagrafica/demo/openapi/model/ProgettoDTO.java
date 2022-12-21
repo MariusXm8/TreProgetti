@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * ProgettoDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-20T17:37:40.904146300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-21T17:27:01.592419300+01:00[Europe/Paris]")
 public class ProgettoDTO   {
   @JsonProperty("listaLavoratori")
   @Valid
