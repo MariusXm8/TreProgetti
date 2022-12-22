@@ -1,5 +1,5 @@
-src/main/java/srl/anagrafica/demo/openapi/api/ApiUtil.java
-src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApi.java
-src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApiController.java
-src/main/java/srl/anagrafica/demo/openapi/api/ProgettoApiDelegate.java
-src/main/java/srl/anagrafica/demo/openapi/model/ProgettoDTO.java
+src/main/java/srl/anagrafica/openapi/api/ApiUtil.java
+src/main/java/srl/anagrafica/openapi/api/ProgettoApi.java
+src/main/java/srl/anagrafica/openapi/api/ProgettoApiController.java
+src/main/java/srl/anagrafica/openapi/api/ProgettoApiDelegate.java
+src/main/java/srl/anagrafica/openapi/model/ProgettoDTO.java
