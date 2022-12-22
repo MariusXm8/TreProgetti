@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.NativeWebRequest;
 
 import srl.anagrafica.demo.openapi.api.ProgettoApiDelegate;
 import srl.anagrafica.demo.openapi.model.ProgettoDTO;
@@ -110,7 +111,7 @@ public class ProgettoService implements ProgettoApiDelegate {
 		}
 		
 	}
-	
+
 	
 }
 

@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * ProgettoDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-21T17:27:01.592419300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-22T14:52:14.620730400+01:00[Europe/Paris]")
 public class ProgettoDTO   {
   @JsonProperty("listaLavoratori")
   @Valid
@@ -66,7 +66,7 @@ public class ProgettoDTO   {
    * Get dataInizio
    * @return dataInizio
   */
-  @ApiModelProperty(example = "2011-12-03", value = "")
+  @ApiModelProperty(example = "2011-12-03T00:00:00Z", value = "")
 
 
   public String getDataInizio() {
@@ -86,7 +86,7 @@ public class ProgettoDTO   {
    * Get dataFine
    * @return dataFine
   */
-  @ApiModelProperty(example = "2011-12-03", value = "")
+  @ApiModelProperty(example = "2011-12-03T00:00:00Z", value = "")
 
 
   public String getDataFine() {

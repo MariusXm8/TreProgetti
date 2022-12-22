@@ -5,10 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import srl.anagrafica2.model.Progetto;
 
-
-
-
-
 @Repository
 public interface ProgettoRepository extends JpaRepository<Progetto, Long>{
 

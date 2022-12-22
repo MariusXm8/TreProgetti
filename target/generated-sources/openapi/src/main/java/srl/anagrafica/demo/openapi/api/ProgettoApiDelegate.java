@@ -16,7 +16,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link ProgettoApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-21T17:27:01.592419300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-22T14:52:14.620730400+01:00[Europe/Paris]")
 public interface ProgettoApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -36,7 +36,7 @@ public interface ProgettoApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"dataInizio\" : \"2011-12-03\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03\", \"budget\" : 500.0 }";
+                    String exampleString = "{ \"dataInizio\" : \"2011-12-03T00:00:00Z\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03T00:00:00Z\", \"budget\" : 500.0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -63,7 +63,7 @@ public interface ProgettoApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"dataInizio\" : \"2011-12-03\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03\", \"budget\" : 500.0 }";
+                    String exampleString = "{ \"dataInizio\" : \"2011-12-03T00:00:00Z\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03T00:00:00Z\", \"budget\" : 500.0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -124,7 +124,7 @@ public interface ProgettoApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"dataInizio\" : \"2011-12-03\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03\", \"budget\" : 500.0 }";
+                    String exampleString = "{ \"dataInizio\" : \"2011-12-03T00:00:00Z\", \"listaLavoratori\" : [ 1, 2, 3 ], \"dataFine\" : \"2011-12-03T00:00:00Z\", \"budget\" : 500.0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
