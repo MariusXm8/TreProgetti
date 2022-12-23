@@ -3,27 +3,25 @@ info:
   title: Gestione Progetto
   description: Servizi per la gestione di progetti
   version: 1.0.0
-  
 paths:
   /progetto:
     get:
-      operationId: CercaTutti
+      operationId: cercaTutti
       description: Ritorna tutti i progetti
       responses:
         '200':
           description: operazione riuscita
           content:
-            applicazion/json:
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/progettoDTO'
-                  
+            
         '401':
           description: errore
-          
     post:
-      operationId: AggiungiProgetto
+      operationId: aggiungiProgetto
       description: Aggiunge progetto nel db
       requestBody:
         description: crea prima il body per inserire nel db
@@ -41,20 +39,19 @@ paths:
                 $ref: '#/components/schemas/progettoDTO'
         '401':
           description: Input non valido
-          
   /progetto/{id}:
     put:
       summary: Modifica un progetto
       description: Modifica un progetto ricevendo un id
-      operationId: ModificaProgettoId
+      operationId: modificaProgettoId
       parameters:
-        - name: id
-          in: path
-          description: ID del progetto
-          required: true
-          schema:
-            type: integer
-            format: int64
+      - name: id
+        in: path
+        description: ID del progetto
+        required: true
+        schema:
+          type: integer
+          format: int64
       requestBody:
         description: Aggiorna il progetto
         content:
@@ -72,10 +69,9 @@ paths:
         '401':
           description: Persona not found
           
-          
     delete:
       summary: Cancella una persona
-      operationId: CancellaProgettoId
+      operationId: cancellaProgettoId
       description: Cancella una persona ricevando l'id
       parameters:
       - name: id
@@ -86,7 +82,7 @@ paths:
           type: integer
           format: int64
       responses:
-        '200':
+        '201':
           description: Progetto Cancellato
           content:
             application/json:
@@ -94,71 +90,67 @@ paths:
                 type: string
         '401':
           description: Progetto non trovato
-  /associa/{id}{id2}:
-    put:
-      summary: Modifica un progetto
-      description: Modifica un progetto ricevendo un id
-      operationId: AssociaProgettoLavoratore
+          
+  /progetto/associa/{idProgetto}/{idLavoratore}:
+    post:
+      summary: Associa il lavoratore con il progetto
+      description: Associa un lavoratore al progetto
+      operationId: associaProgettoLavoratore
       parameters:
-        - name: id
-          in: path
-          description: ID del progetto
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: id2
-          in: path
-          description: ID del Lavoratore
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: Aggiorna il progetto
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/progettoDTO'
+      - name: idProgetto
+        in: path
+        description: ID del progetto
         required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idLavoratore
+        in: path
+        description: ID del Lavoratore
+        required: true
+        schema:
+          type: integer
+          format: int64
+       
       responses:
-        '200':
-          description: Modifica riuscita
+        '201':
+          description: Associazione riuscita
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/progettoDTO'
+                
         '401':
           description: Progetto not found
+          
     delete:
-      summary: Modifica un progetto
-      description: Modifica un progetto ricevendo un id
-      operationId: RimoviProgettoLavoratore
+      summary: Rimovi un lavoratore associato
+      description: Rimuove il lavoratore associato
+      operationId: rimoviProgettoLavoratore
       parameters:
-        - name: id
-          in: path
-          description: ID del progetto
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: id2
-          in: path
-          description: ID del Lavoratore
-          required: true
-          schema:
-            type: integer
-            format: int64
+      - name: idProgetto
+        in: path
+        description: ID del progetto
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idLavoratore
+        in: path
+        description: ID del Lavoratore
+        required: true
+        schema:
+          type: integer
+          format: int64
       responses:
-        '200':
+        '201':
           description: Rimozione riuscita
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/progettoDTO'
+                type: string
         '401':
           description: Progetto not found
-        
 components:
   schemas:
     progettoDTO:
@@ -168,20 +160,17 @@ components:
           type: array
           items:
             type: integer
-          example: [1,2,3]
+          example:
+          - 1
+          - 2
+          - 3
         dataInizio:
           type: string
-          example: 2011-12-03
+          example: 2011-12-03T00:00:00Z
         dataFine:
           type: string
-          example: 2011-12-03
+          example: 2011-12-03T00:00:00Z
         budget:
           type: number
           format: float
-          example: 500.00
-        
-            
-      
-      
-      
-      
+          example: 500.0

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Build-Jdk-Spec: 17
-Implementation-Title: dstech-treProgetti
+Implementation-Title: dstech-anagrafica-ultra
 Implementation-Version: 0.0.1-SNAPSHOT
 Created-By: Maven Integration for Eclipse
 
