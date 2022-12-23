@@ -11,7 +11,7 @@ import srl.anagrafica.openapi.model.ProgettoDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-22T16:53:56+0100",
+    date = "2022-12-23T18:17:28+0100",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.200.v20220802-0458, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 @Component

@@ -12,11 +12,12 @@ paths:
         '200':
           description: operazione riuscita
           content:
-            applicazion/json:
+            application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/progettoDTO'
+            
         '401':
           description: errore
     post:
@@ -91,9 +92,9 @@ paths:
           description: Progetto non trovato
           
   /progetto/associa/{idProgetto}/{idLavoratore}:
-    put:
-      summary: Modifica un progetto
-      description: Modifica un progetto ricevendo un id
+    post:
+      summary: Associa il lavoratore con il progetto
+      description: Associa un lavoratore al progetto
       operationId: associaProgettoLavoratore
       parameters:
       - name: idProgetto
@@ -110,20 +111,15 @@ paths:
         schema:
           type: integer
           format: int64
-      requestBody:
-        description: Aggiorna il progetto
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/progettoDTO'
-        required: true
+       
       responses:
         '201':
-          description: Modifica riuscita
+          description: Associazione riuscita
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/progettoDTO'
+                
         '401':
           description: Progetto not found
           

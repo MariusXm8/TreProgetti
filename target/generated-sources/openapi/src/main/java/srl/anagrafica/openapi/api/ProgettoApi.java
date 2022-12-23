@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-22T16:53:51.908316200+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-23T18:17:24.714672900+01:00[Europe/Paris]")
 @Validated
 @Api(value = "progetto", description = "the progetto API")
 public interface ProgettoApi {
@@ -49,26 +49,24 @@ public interface ProgettoApi {
 
 
     /**
-     * PUT /progetto/associa/{idProgetto}/{idLavoratore} : Modifica un progetto
-     * Modifica un progetto ricevendo un id
+     * POST /progetto/associa/{idProgetto}/{idLavoratore} : Associa il lavoratore con il progetto
+     * Associa un lavoratore al progetto
      *
      * @param idProgetto ID del progetto (required)
      * @param idLavoratore ID del Lavoratore (required)
-     * @param progettoDTO Aggiorna il progetto (required)
-     * @return Modifica riuscita (status code 201)
+     * @return Associazione riuscita (status code 201)
      *         or Progetto not found (status code 401)
      */
-    @ApiOperation(value = "Modifica un progetto", nickname = "associaProgettoLavoratore", notes = "Modifica un progetto ricevendo un id", response = ProgettoDTO.class, tags={  })
+    @ApiOperation(value = "Associa il lavoratore con il progetto", nickname = "associaProgettoLavoratore", notes = "Associa un lavoratore al progetto", response = ProgettoDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Modifica riuscita", response = ProgettoDTO.class),
+        @ApiResponse(code = 201, message = "Associazione riuscita", response = ProgettoDTO.class),
         @ApiResponse(code = 401, message = "Progetto not found") })
-    @PutMapping(
+    @PostMapping(
         value = "/progetto/associa/{idProgetto}/{idLavoratore}",
-        produces = { "application/json" },
-        consumes = { "application/json" }
+        produces = { "application/json" }
     )
-    default ResponseEntity<ProgettoDTO> associaProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("idProgetto") Long idProgetto,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("idLavoratore") Long idLavoratore,@ApiParam(value = "Aggiorna il progetto" ,required=true )  @Valid @RequestBody ProgettoDTO progettoDTO) {
-        return getDelegate().associaProgettoLavoratore(idProgetto, idLavoratore, progettoDTO);
+    default ResponseEntity<ProgettoDTO> associaProgettoLavoratore(@ApiParam(value = "ID del progetto",required=true) @PathVariable("idProgetto") Long idProgetto,@ApiParam(value = "ID del Lavoratore",required=true) @PathVariable("idLavoratore") Long idLavoratore) {
+        return getDelegate().associaProgettoLavoratore(idProgetto, idLavoratore);
     }
 
 
@@ -106,7 +104,7 @@ public interface ProgettoApi {
         @ApiResponse(code = 401, message = "errore") })
     @GetMapping(
         value = "/progetto",
-        produces = { "applicazion/json" }
+        produces = { "application/json" }
     )
     default ResponseEntity<List<ProgettoDTO>> cercaTutti() {
         return getDelegate().cercaTutti();

@@ -1,13 +1,11 @@
 package srl.anagrafica.service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 
 import srl.anagrafica.mapper.ProgettoMapper;
 import srl.anagrafica.model.Progetto;
@@ -18,7 +16,6 @@ import srl.anagrafica.validation.ValidationService;
 
 
 @Service
-
 public class ProgettoService implements ProgettoApiDelegate {
 	
 	
@@ -79,21 +76,20 @@ public class ProgettoService implements ProgettoApiDelegate {
 		return ResponseEntity.notFound().build();// In teoria devo ritornare gli errori
 
 	}
-	// ------------------------------------------PUT ASOCCIA
+	// ------------------------------------------POST ASOCCIA
 	@Override
-	public ResponseEntity<ProgettoDTO> associaProgettoLavoratore(Long idProgetto, Long idLavoratore, ProgettoDTO progettoDTO) {
+	public ResponseEntity<ProgettoDTO> associaProgettoLavoratore(Long idProgetto, Long idLavoratore) {
 		Optional<Progetto> op = repo.findById(idProgetto);
 		if (!op.isPresent()&& vs.associato(idLavoratore)) {
 			return ResponseEntity.notFound().build();
 		}
 		else {
 			//se Il progetto è presente
-			Progetto p=pm.progettoDTOToProgetto(progettoDTO);						
-			p.getListaLavoratori().add(idLavoratore);	
-			repo.save(p);
-			return ResponseEntity.ok(pm.progettoToProgettoDTO(p));
+			Progetto ps=op.get();
+			ps.getListaLavoratori().add(idLavoratore);	
+			repo.save(ps);
+			return ResponseEntity.ok(pm.progettoToProgettoDTO(ps));
 			}
-		
 	}
 	// ------------------------------------------DELETE ASOCCIA
 	@Override

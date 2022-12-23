@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -35,6 +36,7 @@ public class Progetto {
 	@Column(name="budget")
 	private double budget;
 
+	
 	
 
 }
