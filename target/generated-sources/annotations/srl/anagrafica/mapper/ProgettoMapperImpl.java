@@ -11,7 +11,7 @@ import srl.anagrafica.openapi.model.ProgettoDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-12-23T18:17:28+0100",
+    date = "2023-01-03T22:53:29+0100",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.4.200.v20220802-0458, environment: Java 17.0.4.1 (Eclipse Adoptium)"
 )
 @Component
@@ -25,14 +25,14 @@ public class ProgettoMapperImpl implements ProgettoMapper {
 
         ProgettoDTO progettoDTO = new ProgettoDTO();
 
-        progettoDTO.setBudget( (float) p.getBudget() );
-        if ( p.getDataFine() != null ) {
-            progettoDTO.setDataFine( DateTimeFormatter.ISO_LOCAL_DATE.format( p.getDataFine() ) );
-        }
+        progettoDTO.setListaLavoratori( longListToIntegerList( p.getListaLavoratori() ) );
         if ( p.getDataInizio() != null ) {
             progettoDTO.setDataInizio( DateTimeFormatter.ISO_LOCAL_DATE.format( p.getDataInizio() ) );
         }
-        progettoDTO.setListaLavoratori( longListToIntegerList( p.getListaLavoratori() ) );
+        if ( p.getDataFine() != null ) {
+            progettoDTO.setDataFine( DateTimeFormatter.ISO_LOCAL_DATE.format( p.getDataFine() ) );
+        }
+        progettoDTO.setBudget( (float) p.getBudget() );
 
         return progettoDTO;
     }

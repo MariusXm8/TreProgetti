@@ -1,11 +1,15 @@
 package srl.anagrafica.validation;
 
 
+import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import srl.anagrafica.openapi.model.ProgettoDTO;
+import srl.anagrafica.repository.ProgettoRepository;
 
 
 @Service
@@ -14,6 +18,8 @@ public class ValidationService {
 	
 	@Getter
 	private String message = "";
+	@Autowired
+	private  ProgettoRepository repo;
 	
 //	private boolean verStringa(String stringa) {
 //		return Pattern.matches(Costants.VER_STRINGA, stringa);
@@ -21,6 +27,7 @@ public class ValidationService {
 
 	public boolean validaDati(ProgettoDTO progettoDTO) {
 		
+		boolean a=associato(null);
 //		message = "";
 //
 //		if (!verStringa(progettoDTO.getDataInizio())) {
@@ -36,6 +43,8 @@ public class ValidationService {
 	}
 
 	public boolean associato(Long idLavoratore) {
+		
+		
 		return true;
 	}
 

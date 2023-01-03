@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import srl.anagrafica.mapper.ProgettoMapper;
 import srl.anagrafica.model.Progetto;
@@ -16,6 +17,7 @@ import srl.anagrafica.validation.ValidationService;
 
 
 @Service
+@RestController
 public class ProgettoService implements ProgettoApiDelegate {
 	
 	

@@ -16,7 +16,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link ProgettoApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-12-23T18:17:24.714672900+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-01-03T22:53:29.101015300+01:00[Europe/Paris]")
 public interface ProgettoApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {
